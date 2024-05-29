@@ -1,21 +1,26 @@
-import Colors from "@/constants/Colors";
-import { useColorScheme } from "react-native";
+import { Theme } from "@/constants/Colors";
+import { createBox } from "@shopify/restyle";
 import {
 	SafeAreaView,
 	SafeAreaProviderProps,
 } from "react-native-safe-area-context";
 
 export const SafeArea = (props: SafeAreaProviderProps) => {
-	const colorScheme = useColorScheme();
+	const Box = createBox<Theme>();
 	return (
-		<SafeAreaView
-			{...props}
-			style={[
-				props.style,
-				{ flex: 1, backgroundColor: Colors[colorScheme ?? "light"].background },
-			]}
-		>
-			{props.children}
-		</SafeAreaView>
+		<Box style={{ flex: 1 }} backgroundColor="mainBackground">
+			<SafeAreaView
+				{...props}
+				style={[
+					props.style,
+					{
+						flex: 1,
+						backgroundColor: "transparent",
+					},
+				]}
+			>
+				{props.children}
+			</SafeAreaView>
+		</Box>
 	);
 };

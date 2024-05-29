@@ -1,10 +1,5 @@
-import { StyleSheet, Text, View } from "react-native";
+import { SafeArea } from "@/components/global/StyledSafeArea";
 const LoginPage = () => {
-	return (
-		<View>
-			<Text>LoginPage</Text>
-		</View>
-	);
+	return <SafeArea></SafeArea>;
 };
 export default LoginPage;
-const styles = StyleSheet.create({});

@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
-import Colors from "@/constants/Colors";
+import { lightTheme, darkTheme } from "@/constants/Colors";
+
 import { useColorScheme } from "react-native";
-import { Redirect } from "expo-router";
+import { router } from "expo-router";
 
 // TODO: Replace with auth logic later on
 const LOGGED_IN = false;
@@ -16,17 +17,28 @@ function TabBarIcon(props: {
 	return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
+useEffect(() => {
+	if (!LOGGED_IN) {
+		router.replace("/(auth)/onboarding");
+	}
+}, []);
+
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
 
-	if (!LOGGED_IN) return <Redirect href={"(auth)/onboarding"} />;
 	return (
 		<Tabs
 			screenOptions={{
 				headerShown: false,
-				tabBarActiveTintColor: Colors[colorScheme ?? "light"].tabIconSelected,
+				tabBarActiveTintColor:
+					colorScheme === "light"
+						? lightTheme.colors.mainForeground
+						: darkTheme.colors.mainForeground,
 				tabBarStyle: {
-					backgroundColor: Colors[colorScheme ?? "light"].backgroundSecondary,
+					backgroundColor:
+						colorScheme === "light"
+							? lightTheme.colors.mainBackground
+							: darkTheme.colors.mainBackground,
 				},
 			}}
 		>

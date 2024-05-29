@@ -1,39 +1,57 @@
-export default {
-	light: {
-		text: "#140b06",
-		background: "#fdf9f7",
-		backgroundSecondary: "#faf1ed",
-		primary: "#c87c51",
-		secondary: "#b0dc8f",
-		accent: "#70cf68",
-		tabIconDefault: "#ccc",
-		tabIconSelected: "#c87c51",
-	},
-	dark: {
-		text: "#f9f0eb",
-		background: "#080402",
-		backgroundSecondary: "#110805",
-		primary: "#ae6337",
-		secondary: "#457023",
-		accent: "#389730",
-		tabIconDefault: "#ccc",
-		tabIconSelected: "#ae6337",
-	},
+import { createTheme } from "@shopify/restyle";
+import { normalize } from "./Size";
+
+export const palette = {
+	lightOrange: "#f9821a",
+	darkOrange: "#f9b473",
+	lightGreen: "#9ad5b6",
+	darkGreen: "#82a209",
+	lightBlue: "#644cf0",
+	darkBlue: "#4174d2",
+
+	lightCardPrimary: "#fdf4ed",
+	darkCardPrimary: "#2c1a06",
+	lightCardSecondary: "#e9f3ea",
+	darkCardSecondary: "#362f05",
+
+	white: "#fcfaf8",
+	cream: "#f4ece6",
+	black: "#180e02",
+	darkBrown: "#231202",
 };
 
-/* 
-:root[data-theme="light"] {
-  --text: #180e02;
-  --background: #fcfaf8;
-  --primary: #f9821a;
-  --secondary: #9ad5b6;
-  --accent: #644cf0;
-}
-:root[data-theme="dark"] {
-  --text: #fdf3e7;
-  --background: #070503;
-  --primary: #e56e06;
-  --secondary: #2a6545;
-  --accent: #270fb3;
-}
-*/
+export const lightTheme = createTheme({
+	spacing: {
+		sm: 8,
+		md: 16,
+	},
+	colors: {
+		mainBackground: palette.white,
+		mainForeground: palette.black,
+
+		primaryCardBackground: palette.lightCardPrimary,
+		secondaryCardBackground: palette.lightCardSecondary,
+	},
+	textVariants: {
+		defaults: {
+			color: "mainForeground",
+			fontSize: normalize(16, "height"),
+			lineHeight: normalize(24, "height"),
+			fontFamily: "Mukta",
+		},
+	},
+});
+
+export type Theme = typeof lightTheme;
+
+export const darkTheme: Theme = {
+	...lightTheme,
+	colors: {
+		...lightTheme.colors,
+		mainBackground: palette.darkBrown,
+		mainForeground: palette.cream,
+
+		primaryCardBackground: palette.darkCardPrimary,
+		secondaryCardBackground: palette.darkCardSecondary,
+	},
+};

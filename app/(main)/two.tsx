@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import { SafeArea } from "@/components/global/StyledSafeArea";
 const TabTwo = () => {
-	return (
-		<View>
-			<Text>TabTwo</Text>
-		</View>
-	);
+	return <SafeArea></SafeArea>;
 };
 export default TabTwo;

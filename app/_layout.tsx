@@ -1,8 +1,11 @@
+import { darkTheme, lightTheme } from "@/constants/Colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { ThemeProvider } from "@shopify/restyle";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import { useColorScheme } from "react-native";
 import "react-native-reanimated";
 
 export {
@@ -48,10 +51,14 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+	const colorScheme = useColorScheme();
+
 	return (
-		<Stack>
-			<Stack.Screen name="(auth)" options={{ headerShown: false }} />
-			<Stack.Screen name="(main)" options={{ headerShown: false }} />
-		</Stack>
+		<ThemeProvider theme={colorScheme === "dark" ? darkTheme : lightTheme}>
+			<Stack>
+				<Stack.Screen name="(auth)" options={{ headerShown: false }} />
+				<Stack.Screen name="(main)" options={{ headerShown: false }} />
+			</Stack>
+		</ThemeProvider>
 	);
 }
