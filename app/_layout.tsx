@@ -15,7 +15,7 @@ export {
 
 export const unstable_settings = {
 	// Ensure that reloading on `/modal` keeps a back button present.
-	initialRouteName: "(main)",
+	initialRouteName: "(app)/(main)",
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -23,10 +23,10 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	const [loaded, error] = useFonts({
-		Mukta: require("../assets/fonts/Mukta-Regular.ttf"),
-		MuktaMedium: require("../assets/fonts/Mukta-Medium.ttf"),
-		MuktaSemiBold: require("../assets/fonts/Mukta-SemiBold.ttf"),
-		MuktaBold: require("../assets/fonts/Mukta-Bold.ttf"),
+		Poppins: require("../assets/fonts/Poppins-Regular.ttf"),
+		PoppinsMedium: require("../assets/fonts/Poppins-Medium.ttf"),
+		PoppinsSemiBold: require("../assets/fonts/Poppins-SemiBold.ttf"),
+		PoppinsBold: require("../assets/fonts/Poppins-Bold.ttf"),
 		LibreBaskerville: require("../assets/fonts/LibreBaskerville-Regular.ttf"),
 		LibreBaskervilleBold: require("../assets/fonts/LibreBaskerville-Bold.ttf"),
 		...FontAwesome.font,
@@ -57,7 +57,6 @@ function RootLayoutNav() {
 		<ThemeProvider theme={colorScheme === "dark" ? darkTheme : lightTheme}>
 			<Stack>
 				<Stack.Screen name="(auth)" options={{ headerShown: false }} />
-				<Stack.Screen name="(main)" options={{ headerShown: false }} />
 			</Stack>
 		</ThemeProvider>
 	);

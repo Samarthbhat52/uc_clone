@@ -1,11 +1,8 @@
 import { Theme } from "@/constants/Colors";
 import { createBox } from "@shopify/restyle";
-import {
-	SafeAreaView,
-	SafeAreaProviderProps,
-} from "react-native-safe-area-context";
+import { SafeAreaView, ViewProps } from "react-native";
 
-export const SafeArea = (props: SafeAreaProviderProps) => {
+export const SafeArea = (props: ViewProps) => {
 	const Box = createBox<Theme>();
 	return (
 		<Box style={{ flex: 1 }} backgroundColor="mainBackground">

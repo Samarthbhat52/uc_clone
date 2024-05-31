@@ -2,7 +2,7 @@ import { createTheme } from "@shopify/restyle";
 import { normalize } from "./Size";
 
 export const palette = {
-	lightOrange: "#f9821a",
+	lightOrange: "#EB9345",
 	darkOrange: "#f9b473",
 	lightGreen: "#9ad5b6",
 	darkGreen: "#82a209",
@@ -16,8 +16,14 @@ export const palette = {
 
 	white: "#fcfaf8",
 	cream: "#f4ece6",
+	creamFaded: "#f4ece685",
+
 	black: "#180e02",
 	darkBrown: "#231202",
+	darkBrownFaded: "#23120285",
+
+	errorLight: "#cf6679",
+	errorDark: "#b00020",
 };
 
 export const lightTheme = createTheme({
@@ -31,13 +37,37 @@ export const lightTheme = createTheme({
 
 		primaryCardBackground: palette.lightCardPrimary,
 		secondaryCardBackground: palette.lightCardSecondary,
+
+		primaryButton: palette.lightOrange,
+		secondaryButton: palette.lightGreen,
+
+		buttonTextColor: palette.black,
+		bottomCardColor: palette.creamFaded,
+
+		error: palette.errorLight,
 	},
 	textVariants: {
 		defaults: {
 			color: "mainForeground",
 			fontSize: normalize(16, "height"),
-			lineHeight: normalize(24, "height"),
-			fontFamily: "Mukta",
+			fontFamily: "Poppins",
+		},
+		heading: {
+			fontFamily: "PoppinsBold",
+			fontSize: normalize(24, "height"),
+		},
+		title: {
+			fontFamily: "LibreBaskervilleBold",
+			fontSize: normalize(26, "height"),
+			textAlign: "center",
+		},
+		button: {
+			fontFamily: "PoppinsBold",
+			fontSize: normalize(18, "height"),
+			color: "buttonTextColor",
+		},
+		error: {
+			color: "mainBackground",
 		},
 	},
 });
@@ -53,5 +83,13 @@ export const darkTheme: Theme = {
 
 		primaryCardBackground: palette.darkCardPrimary,
 		secondaryCardBackground: palette.darkCardSecondary,
+
+		primaryButton: palette.darkOrange,
+		secondaryButton: palette.darkGreen,
+
+		buttonTextColor: palette.darkBrown,
+		bottomCardColor: palette.darkBrownFaded,
+
+		error: palette.errorDark,
 	},
 };
