@@ -15,10 +15,12 @@ import {
 } from "react-native";
 import { Formik } from "formik";
 import * as yup from "yup";
+import { useRouter } from "expo-router";
 
 const LoginPage = () => {
 	const Text = createText<Theme>();
 	const colorScheme = useColorScheme();
+	const router = useRouter();
 
 	const phoneRegex = /^(\+91|\+91\-|0)?[789]\d{9}$/;
 	const phoneSchema = yup.object({
@@ -42,7 +44,10 @@ const LoginPage = () => {
 						initialValues={{ phone: "" }}
 						validationSchema={phoneSchema}
 						onSubmit={(values) => {
-							// console.log(values);
+							router.push({
+								pathname: "/enter-otp/[phone]",
+								params: { phone: values.phone },
+							});
 						}}
 					>
 						{(props) => (
@@ -65,8 +70,10 @@ const LoginPage = () => {
 									<View style={styles.formContainer}>
 										<View
 											style={[
-												styles.input,
-												colorScheme == "light" ? styles.lightIp : styles.darkIp,
+												globalStyles.input,
+												colorScheme == "light"
+													? globalStyles.lightIp
+													: globalStyles.darkIp,
 											]}
 										>
 											<Text style={{ fontSize: normalize(22, "height") }}>
@@ -79,9 +86,11 @@ const LoginPage = () => {
 											placeholder="Mobile Number"
 											maxLength={10}
 											style={[
-												styles.input,
+												globalStyles.input,
 												{ flex: 1 },
-												colorScheme == "light" ? styles.lightIp : styles.darkIp,
+												colorScheme == "light"
+													? globalStyles.lightIp
+													: globalStyles.darkIp,
 												props.touched.phone && props.errors.phone && props.dirty
 													? { borderColor: "red" }
 													: {},
@@ -104,8 +113,6 @@ const LoginPage = () => {
 											]}
 										>
 											<Text variant="error">{props.errors.phone}</Text>
-
-											{/* <Text variant="error">Enter a valid phone number</Text> */}
 										</View>
 									)}
 								</View>
@@ -134,21 +141,7 @@ const styles = StyleSheet.create({
 		gap: normalize(10, "width"),
 		marginTop: normalize(15, "height"),
 	},
-	input: {
-		paddingHorizontal: normalize(20, "width"),
-		paddingVertical: normalize(10, "height"),
-		borderRadius: 10,
-		fontFamily: "Poppins",
-		fontSize: normalize(22, "height"),
-	},
-	lightIp: {
-		backgroundColor: lightTheme.colors.secondaryCardBackground,
-		color: lightTheme.colors.mainForeground,
-	},
-	darkIp: {
-		backgroundColor: darkTheme.colors.secondaryCardBackground,
-		color: darkTheme.colors.mainForeground,
-	},
+
 	errorBg: {
 		paddingVertical: normalize(2, "height"),
 		justifyContent: "center",

@@ -24,4 +24,19 @@ export const globalStyles = StyleSheet.create({
 		backgroundColor: darkTheme.colors.primaryButton,
 		borderRadius: 10,
 	},
+	input: {
+		paddingHorizontal: normalize(20, "width"),
+		paddingVertical: normalize(10, "height"),
+		borderRadius: 10,
+		fontFamily: "Poppins",
+		fontSize: normalize(22, "height"),
+	},
+	lightIp: {
+		backgroundColor: lightTheme.colors.secondaryCardBackground,
+		color: lightTheme.colors.mainForeground,
+	},
+	darkIp: {
+		backgroundColor: darkTheme.colors.secondaryCardBackground,
+		color: darkTheme.colors.mainForeground,
+	},
 });

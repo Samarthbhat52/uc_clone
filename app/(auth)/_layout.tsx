@@ -36,7 +36,32 @@ const AuthLayout = () => {
 					),
 				}}
 			/>
-			<Stack.Screen name="enter-otp" />
+			<Stack.Screen
+				name="enter-otp/[phone]"
+				options={{
+					title: "",
+					headerShadowVisible: false,
+					headerStyle: {
+						backgroundColor:
+							colorScheme == "light"
+								? lightTheme.colors.mainBackground
+								: darkTheme.colors.mainBackground,
+					},
+					headerLeft: () => (
+						<TouchableOpacity onPress={() => router.back()}>
+							<Ionicons
+								size={34}
+								name="arrow-back"
+								color={
+									colorScheme == "light"
+										? lightTheme.colors.mainForeground
+										: darkTheme.colors.mainForeground
+								}
+							/>
+						</TouchableOpacity>
+					),
+				}}
+			/>
 			<Stack.Screen name="(main)" options={{ headerShown: false }} />
 		</Stack>
 	);
